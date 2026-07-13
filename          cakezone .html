@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cake Zone - Premium Cakes Kamalpur</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+:root{--p:#E91E63;--d:#1a1a2e}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',sans-serif;background:#fafafa;padding-bottom:70px}
+.top-bar{background:var(--d);color:#fff;padding:8px;font-size:11px;text-align:center}
+.header{background:#fff;padding:12px 20px;position:sticky;top:0;z-index:999;box-shadow:0 2px 10px rgba(0,0,0,.05);display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:24px;font-weight:800;color:var(--p);text-decoration:none}
+.hero{background:linear-gradient(135deg,#ff9a9e,#fecfef);padding:40px 20px;text-align:center}
+.hero h1{font-size:26px;font-weight:800;color:var(--d);margin:15px 0}
+.btn{display:inline-block;padding:12px 30px;border-radius:50px;text-decoration:none;font-weight:600;margin:5px;cursor:pointer;border:none}
+.btn-pink{background:var(--p);color:#fff}
+.btn-green{background:#25D366;color:#fff}
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:20px 15px;background:#fff;text-align:center}
+.features div{font-size:35px}
+.features small{font-size:10px;display:block}
+.cat-scroll{display:flex;overflow-x:auto;gap:10px;padding:15px;scrollbar-width:none}
+.cat-card{min-width:110px;padding:20px 10px;border-radius:20px;text-align:center;color:#fff;text-decoration:none;font-weight:600;flex-shrink:0;cursor:pointer;border:none}
+.product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:15px}
+.product-card{background:#fff;border-radius:15px;overflow:hidden;box-shadow:0 3px 10px rgba(0,0,0,.05)}
+.product-img{padding:20px;text-align:center;font-size:50px;background:#fff5f5;position:relative}
+.discount{position:absolute;top:8px;left:8px;background:var(--p);color:#fff;padding:3px 8px;border-radius:12px;font-size:10px}
+.product-info{padding:10px}
+.product-info h4{font-size:13px;font-weight:600}
+.price{font-size:18px;font-weight:700;color:var(--p)}
+.add-btn{background:var(--p);color:#fff;border:none;padding:8px;border-radius:50px;width:100%;margin-top:5px;cursor:pointer;font-weight:600}
+.contact{background:var(--d);color:#fff;padding:30px 15px;text-align:center}
+.contact a{color:#fff;text-decoration:none}
+.whatsapp-float{position:fixed;bottom:80px;right:20px;width:55px;height:55px;background:#25D366;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;z-index:999;text-decoration:none;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px;box-shadow:0 -5px 20px rgba(0,0,0,.08);z-index:998}
+.bottom-nav a{text-decoration:none;color:#888;text-align:center;font-size:10px;cursor:pointer}
+.bottom-nav a.active{color:var(--p)}
+.bottom-nav a i{font-size:20px;display:block;margin-bottom:3px}
+
+/* Shop Page */
+.filter-bar{display:flex;overflow-x:auto;gap:8px;padding:10px 15px;scrollbar-width:none}
+.filter-btn{padding:8px 18px;border-radius:50px;border:2px solid #E91E63;background:#fff;color:#E91E63;font-weight:600;font-size:13px;white-space:nowrap;cursor:pointer}
+.filter-btn.active{background:#E91E63;color:#fff}
+.search-box{padding:10px 15px}
+.search-box input{width:100%;padding:12px 20px;border-radius:50px;border:2px solid #eee;font-size:14px;outline:none}
+
+/* Cart Page */
+.empty-cart{text-align:center;padding:80px 20px}
+.cart-item{background:#fff;border-radius:15px;padding:15px;margin:10px 15px;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.qty-btn{width:30px;height:30px;border-radius:50%;border:2px solid #E91E63;background:#fff;color:#E91E63;font-size:16px;cursor:pointer;font-weight:bold}
+.qty-num{font-weight:600;width:30px;text-align:center;display:inline-block}
+.customer-form{background:#fff;border-radius:15px;padding:15px;margin:15px;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.form-input{width:100%;padding:12px;border-radius:12px;border:2px solid #eee;margin-bottom:10px;font-size:14px}
+.form-input:focus{border-color:#E91E63;outline:none}
+.summary{background:#fff;border-radius:20px 20px 0 0;padding:20px;margin-top:20px;box-shadow:0 -5px 30px rgba(0,0,0,.1)}
+.order-btn{background:#25D366;color:#fff;border:none;padding:15px;border-radius:50px;font-size:16px;font-weight:600;width:100%;cursor:pointer}
+.back-btn{background:none;border:none;font-size:20px;cursor:pointer;color:#333}
+
+/* Page Display */
+.page{display:none}
+.page.active{display:block}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">🎂 Free Delivery above ₹499 | ⚡ Same Day Delivery | 📍 Halhali, Kamalpur, Tripura | 📞 +91 7085726926</div>
+
+<!-- HEADER -->
+<div class="header">
+<div class="logo" onclick="showPage('home')">🎂 Cake Zone</div>
+<div>
+<span id="cartCount" style="position:relative;top:0;background:#E91E63;color:#fff;font-size:10px;padding:2px 6px;border-radius:50%;display:none;">0</span>
+</div>
+</div>
+
+<!-- ========== HOME PAGE ========== -->
+<div class="page active" id="homePage">
+<div class="hero">
+<div style="font-size:80px;animation:float 3s infinite">🎂</div>
+<h1>Delicious Cakes Made with ❤️</h1>
+<p style="color:#666">Premium handcrafted cakes delivered fresh to your doorstep in Kamalpur</p>
+<button class="btn btn-pink" onclick="showPage('shop')">🛒 Order Now</button>
+<a href="https://wa.me/917085726926?text=Hi%20Cake%20Zone!%20I%20want%20to%20order%20a%20cake" target="_blank" class="btn btn-green"><i class="fab fa-whatsapp"></i> WhatsApp Order</a>
+</div>
+
+<div class="features">
+<div><div>🚚</div><small>Free Delivery</small></div>
+<div><div>⚡</div><small>Same Day</small></div>
+<div><div>✅</div><small>100% Fresh</small></div>
+<div><div>🎁</div><small>Custom Cakes</small></div>
+</div>
+
+<h3 style="padding:15px;font-weight:700">📋 Categories</h3>
+<div class="cat-scroll">
+<button class="cat-card" style="background:linear-gradient(135deg,#667eea,#764ba2)" onclick="showShop('birthday')">🎂<br>Birthday</button>
+<button class="cat-card" style="background:linear-gradient(135deg,#f093fb,#f5576c)" onclick="showShop('anniversary')">💑<br>Anniversary</button>
+<button class="cat-card" style="background:linear-gradient(135deg,#4facfe,#00f2fe)" onclick="showShop('wedding')">💒<br>Wedding</button>
+<button class="cat-card" style="background:linear-gradient(135deg,#fa709a,#fee140)" onclick="showShop('cupcakes')">🧁<br>Cupcakes</button>
+</div>
+
+<h3 style="padding:15px;font-weight:700">🔥 Popular Cakes</h3>
+<div class="product-grid" id="homeProducts"></div>
+
+<div style="text-align:center;margin:20px"><button class="btn btn-pink" onclick="showPage('shop')">View All Cakes →</button></div>
+
+<div class="contact">
+<h3>📍 Visit Our Store</h3>
+<p>Halhali, Kamalpur, Dhalai, Tripura - 799286</p>
+<p>📞 <a href="tel:+917085726926">+91 7085726926</a></p>
+<p>✉️ pd109745@gmail.com</p>
+<a href="https://wa.me/917085726926" target="_blank" class="btn btn-green" style="margin-top:10px"><i class="fab fa-whatsapp"></i> Chat Now</a>
+</div>
+
+<div style="background:#1a1a2e;color:#fff;text-align:center;padding:20px;font-size:12px">
+<p>🎂 Cake Zone - Premium Cakes & Pastries</p><p>© 2024 All rights reserved</p>
+</div>
+</div>
+
+<!-- ========== SHOP PAGE ========== -->
+<div class="page" id="shopPage">
+<h3 style="padding:15px;font-weight:700">🛍️ Our Cakes</h3>
+<div class="search-box">
+<input type="text" id="searchInput" placeholder="🔍 Search cakes..." onkeyup="renderShop()">
+</div>
+<div class="filter-bar">
+<button class="filter-btn active" onclick="filterShop('all',this)">🍰 All</button>
+<button class="filter-btn" onclick="filterShop('birthday',this)">🎂 Birthday</button>
+<button class="filter-btn" onclick="filterShop('anniversary',this)">💑 Anniversary</button>
+<button class="filter-btn" onclick="filterShop('wedding',this)">💒 Wedding</button>
+<button class="filter-btn" onclick="filterShop('cupcakes',this)">🧁 Cupcakes</button>
+</div>
+<div class="product-grid" id="shopProducts"></div>
+</div>
+
+<!-- ========== CART PAGE ========== -->
+<div class="page" id="cartPage">
+<div style="padding:15px;display:flex;align-items:center;gap:15px;background:#fff;margin-bottom:10px">
+<button class="back-btn" onclick="showPage('shop')"><i class="fas fa-arrow-left"></i></button>
+<h4 style="margin:0">🛒 My Cart</h4>
+</div>
+<div id="emptyCart" class="empty-cart">
+<div style="font-size:80px">🛒</div>
+<h4>Your cart is empty</h4>
+<p>Add some delicious cakes!</p>
+<button class="btn btn-pink" onclick="showPage('shop')">Browse Cakes</button>
+</div>
+<div id="cartContent" style="display:none;">
+<div id="cartItems"></div>
+<div class="customer-form">
+<h6>📋 Your Details</h6>
+<input type="text" id="custName" class="form-input" placeholder="Full Name *">
+<input type="tel" id="custPhone" class="form-input" placeholder="Phone Number *" value="+91 ">
+<textarea id="custAddress" class="form-input" rows="2" placeholder="Delivery Address *"></textarea>
+<textarea id="custNotes" class="form-input" rows="2" placeholder="Special Instructions (optional)"></textarea>
+</div>
+<div class="summary">
+<div style="display:flex;justify-content:space-between;margin-bottom:8px"><span>Subtotal</span><span id="subtotal">₹0</span></div>
+<div style="display:flex;justify-content:space-between;margin-bottom:8px"><span>Delivery</span><span style="color:green">FREE</span></div>
+<hr>
+<div style="display:flex;justify-content:space-between;margin-bottom:15px"><strong>Total</strong><strong id="total" style="color:#E91E63;font-size:22px">₹0</strong></div>
+<button class="order-btn" onclick="placeOrder()"><i class="fab fa-whatsapp"></i> Order via WhatsApp</button>
+</div>
+</div>
+</div>
+
+<!-- FLOATING BUTTONS -->
+<a href="https://wa.me/917085726926" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+
+<!-- BOTTOM NAVIGATION -->
+<div class="bottom-nav">
+<a onclick="showPage('home')" id="navHome" class="active"><i class="fas fa-home"></i>Home</a>
+<a onclick="showPage('shop')" id="navShop"><i class="fas fa-shopping-bag"></i>Shop</a>
+<a onclick="showPage('cart')" id="navCart"><i class="fas fa-shopping-cart"></i>Cart</a>
+<a href="tel:+917085726926"><i class="fas fa-phone"></i>Call</a>
+<a href="https://wa.me/917085726926"><i class="fab fa-whatsapp"></i>Chat</a>
+</div>
+
+<script>
+// PRODUCT DATA
+const P=[{id:1,n:'Chocolate Truffle Cake',c:'birthday',p:999,s:849,w:'1 kg',sv:'8-10',e:'🎂'},{id:2,n:'Black Forest Cake',c:'birthday',p:899,s:749,w:'1 kg',sv:'8-10',e:'🎂'},{id:3,n:'Red Velvet Cake',c:'anniversary',p:1299,s:1099,w:'1.5 kg',sv:'12-15',e:'💝'},{id:4,n:'Pineapple Cake',c:'birthday',p:799,s:699,w:'1 kg',sv:'8-10',e:'🍍'},{id:5,n:'Butterscotch Cake',c:'birthday',p:899,s:799,w:'1 kg',sv:'8-10',e:'🎂'},{id:6,n:'Strawberry Cake',c:'anniversary',p:999,s:899,w:'1.5 kg',sv:'12-15',e:'🍓'},{id:7,n:'Wedding Special Cake',c:'wedding',p:4999,s:4499,w:'5 kg',sv:'50-60',e:'💒'},{id:8,n:'Royal Wedding Cake',c:'wedding',p:3999,s:3499,w:'3 kg',sv:'30-40',e:'👑'},{id:9,n:'Chocolate Cupcakes 6pcs',c:'cupcakes',p:599,s:499,w:'500 gm',sv:'6 pcs',e:'🧁'},{id:10,n:'Red Velvet Cupcakes 6pcs',c:'cupcakes',p:649,s:549,w:'500 gm',sv:'6 pcs',e:'🧁'}];
+
+let cart=JSON.parse(localStorage.getItem('cz_cart')||'[]');
+let shopFilter='all';
+
+// PAGE NAVIGATION
+function showPage(page){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(page+'Page').classList.add('active');
+document.querySelectorAll('.bottom-nav a').forEach(a=>a.classList.remove('active'));
+document.getElementById('nav'+page.charAt(0).toUpperCase()+page.slice(1)).classList.add('active');
+if(page==='home') renderHome();
+if(page==='shop') renderShop();
+if(page==='cart') renderCart();
+window.scrollTo(0,0);
+}
+
+function showShop(cat){shopFilter=cat;showPage('shop');}
+
+// HOME PRODUCTS
+function renderHome(){
+document.getElementById('homeProducts').innerHTML=P.slice(0,6).map(p=>productCard(p)).join('');
+}
+
+// SHOP PRODUCTS
+function renderShop(){
+let s=document.getElementById('searchInput')?document.getElementById('searchInput').value.toLowerCase():'';
+let f=shopFilter==='all'?P:P.filter(p=>p.c===shopFilter);
+if(s) f=f.filter(p=>p.n.toLowerCase().includes(s));
+document.getElementById('shopProducts').innerHTML=f.map(p=>productCard(p)).join('');
+// Update filter buttons
+if(shopFilter==='all'){
+document.querySelectorAll('.filter-btn').forEach((b,i)=>b.classList.toggle('active',i===0));
+}
+}
+
+function filterShop(cat,btn){
+shopFilter=cat;
+document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+btn.classList.add('active');
+renderShop();
+}
+
+// PRODUCT CARD HTML
+function productCard(p){
+let d=Math.round(((p.p-p.s)/p.p)*100);
+return `<div class="product-card"><div class="product-img">${p.e}${d>0?`<span class="discount">${d}% OFF</span>`:''}</div><div class="product-info"><h4>${p.n}</h4><small>${p.w} | ${p.sv}</small><div class="price">${d>0?`<span style="text-decoration:line-through;color:#ccc;font-size:12px">₹${p.p}</span> `:''}₹${p.s}</div><button class="add-btn" onclick="addToCart(${p.id},'${p.n}',${p.s})">🛒 Add to Cart</button></div></div>`;
+}
+
+// CART FUNCTIONS
+function addToCart(id,n,pr){
+let i=cart.find(x=>x.id===id);
+i?i.q++:cart.push({id,n,pr,q:1});
+saveCart();
+alert('✅ Added to cart!');
+}
+
+function saveCart(){
+localStorage.setItem('cz_cart',JSON.stringify(cart));
+updateCartBadge();
+}
+
+function updateCartBadge(){
+let t=cart.reduce((s,i)=>s+i.q,0);
+let b=document.getElementById('cartCount');
+b.textContent=t;
+b.style.display=t>0?'inline-block':'none';
+}
+
+function renderCart(){
+if(cart.length===0){
+document.getElementById('emptyCart').style.display='block';
+document.getElementById('cartContent').style.display='none';
+return;
+}
+document.getElementById('emptyCart').style.display='none';
+document.getElementById('cartContent').style.display='block';
+let total=0;
+document.getElementById('cartItems').innerHTML=cart.map((item,i)=>{
+total+=item.pr*item.q;
+return `<div class="cart-item"><div style="display:flex;align-items:center;gap:12px"><span style="font-size:40px">🎂</span><div style="flex:1"><strong>${item.n}</strong><br><small>₹${item.pr} each</small><div style="margin-top:8px"><button class="qty-btn" onclick="updateQty(${i},-1)">−</button><span class="qty-num">${item.q}</span><button class="qty-btn" onclick="updateQty(${i},1)">+</button></div></div><div style="text-align:right"><strong>₹${item.pr*item.q}</strong><br><button style="background:none;border:none;color:red;cursor:pointer;margin-top:5px" onclick="removeItem(${i})"><i class="fas fa-trash"></i></button></div></div></div>`;
+}).join('');
+document.getElementById('subtotal').textContent='₹'+total;
+document.getElementById('total').textContent='₹'+total;
+}
+
+function updateQty(i,ch){cart[i].q+=ch;if(cart[i].q<1)cart[i].q=1;saveCart();renderCart();}
+function removeItem(i){if(confirm('Remove?')){cart.splice(i,1);saveCart();renderCart();}}
+
+function placeOrder(){
+let n=document.getElementById('custName').value.trim();
+let p=document.getElementById('custPhone').value.trim();
+let a=document.getElementById('custAddress').value.trim();
+let nt=document.getElementById('custNotes').value.trim();
+if(!n||!p||!a){alert('Please fill all fields!');return;}
+let total=cart.reduce((s,i)=>s+(i.pr*i.q),0);
+let msg=`🆕 *New Order - Cake Zone*%0A%0A👤 *Name:* ${n}%0A📞 *Phone:* ${p}%0A📍 *Address:* ${a}%0A`;
+if(nt) msg+=`📝 *Notes:* ${nt}%0A`;
+msg+=`%0A📋 *Order:*%0A`;
+cart.forEach(i=>{msg+=`• ${i.n} × ${i.q} = ₹${i.pr*i.q}%0A`;});
+msg+=`%0A💰 *Total: ₹${total}*%0A%0A✅ Please confirm!`;
+window.open(`https://wa.me/917085726926?text=${msg}`,'_blank');
+localStorage.removeItem('cz_cart');cart=[];
+alert('✅ Order sent! We will contact you soon.');
+showPage('home');
+}
+
+// INIT
+renderHome();
+renderShop();
+updateCartBadge();
+</script>
+</body>
+</html>
